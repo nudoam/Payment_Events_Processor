@@ -24,5 +24,5 @@ class PaymentEvent(BaseModel):
     meta: dict | None = Field(default=None, serialization_alias="metadata")
     created_at: datetime
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
