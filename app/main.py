@@ -1,7 +1,6 @@
+# app/main.py
 from fastapi import FastAPI
+from app.api.routes import router
 
-app = FastAPI(title="Payment Events Service")
-
-@app.get("/health")
-def health_check():
-    return {"status": "ok"}
+app = FastAPI(title="Payment Events Processor")
+app.include_router(router)
