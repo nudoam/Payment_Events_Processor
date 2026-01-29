@@ -7,6 +7,8 @@ from sqlalchemy.orm import sessionmaker
 from app.core.db import Base, get_db
 from app.main import app
 
+db_url = os.getenv("DATABASE_URL", "postgresql+psycopg://postgres:postgres@localhost:5432/payment_events")
+
 @pytest.fixture(scope="session")
 def engine():
     db_url = os.getenv("DATABASE_URL")
