@@ -13,5 +13,5 @@ class PaymentEventDB(Base):
     payment_id: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
     amount: Mapped[float] = mapped_column(Float, nullable=False)
     currency: Mapped[str] = mapped_column(String(8), nullable=False)
-    metadata: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    meta: Mapped[dict | None] = mapped_column("metadata", JSON, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))

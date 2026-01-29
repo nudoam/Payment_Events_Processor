@@ -13,7 +13,7 @@ class PaymentEventRepository:
             payment_id=dto.payment_id,
             amount=dto.amount,
             currency=dto.currency,
-            metadata=dto.metadata,
+            meta=dto.meta,
         )
         self.db.add(obj)
         self.db.commit()

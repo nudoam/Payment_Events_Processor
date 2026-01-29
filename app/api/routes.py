@@ -19,7 +19,16 @@ def get_processor(db: Session = Depends(get_db)) -> PaymentProcessor:
 @router.post("/events", response_model=PaymentEvent, status_code=status.HTTP_201_CREATED)
 def create_event(payload: PaymentEventCreate, processor: PaymentProcessor = Depends(get_processor)):
     created = processor.create_event(payload)
-    return created
+
+    return PaymentEvent(
+        id=created.id,
+        event_type=created.event_type,
+        payment_id=created.payment_id,
+        amount=created.amount,
+        currency=created.currency,
+        meta=created.meta,
+        created_at=created.created_at,
+    )
 
 @router.get("/events/{event_id}", response_model=PaymentEvent)
 def get_event(event_id: str, processor: PaymentProcessor = Depends(get_processor)):

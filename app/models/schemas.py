@@ -7,7 +7,8 @@ class PaymentEventCreate(BaseModel):
     payment_id: str = Field(min_length=3, max_length=64)
     amount: float = Field(gt=0)
     currency: str = Field(min_length=3, max_length=8)
-    metadata: dict | None = None
+    meta: dict | None = Field(default=None, validation_alias="metadata")
+
 
     @field_validator("currency")
     @classmethod
@@ -20,7 +21,7 @@ class PaymentEvent(BaseModel):
     payment_id: str
     amount: float
     currency: str
-    metadata: dict | None
+    meta: dict | None = Field(default=None, serialization_alias="metadata")
     created_at: datetime
 
     class Config:
